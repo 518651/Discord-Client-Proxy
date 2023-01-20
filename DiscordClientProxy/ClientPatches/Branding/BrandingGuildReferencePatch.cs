@@ -7,7 +7,7 @@ public class BrandingGuildReferencePatch : ClientPatch
     public override async Task<string> ApplyPatch(string content)
     {
         if (!content.Contains("Server")) return content;
-        Console.WriteLine($"[ClientPatch:{GetType().Name}] Applying patch...");
+        Console.WriteLine($"{GetPrefix()} Applying patch...");
         var variations = new Dictionary<string, string>
         {
             {"\"Server\"", "\"Guild\""},

@@ -7,7 +7,7 @@ public class BrandingNamePatch : ClientPatch
     public override async Task<string> ApplyPatch(string content)
     {
         if (!content.Contains("Discord")) return content;
-        Console.WriteLine($"[ClientPatch:{GetType().Name}] Applying patch...");
+        Console.WriteLine($"{GetPrefix()} Applying patch...");
         content = content.Replace(" Discord ", $" {Configuration.Instance.InstanceName} ");
         content = content.Replace("Discord ", $"{Configuration.Instance.InstanceName} ");
         content = content.Replace(" Discord", $" {Configuration.Instance.InstanceName}");

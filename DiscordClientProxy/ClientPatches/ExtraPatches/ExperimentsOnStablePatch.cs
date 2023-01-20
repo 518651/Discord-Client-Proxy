@@ -9,7 +9,7 @@ public class ExperimentsOnStablePatch : ClientPatch
     public override async Task<string> ApplyPatch(string content)
     {
         if (!content.Contains("=\"staging\"===window.GLOBAL_ENV.RELEASE_CHANNEL")) return content;
-        Console.WriteLine($"[ClientPatch:{GetType().Name}] Applying patch...");
+        Console.WriteLine($"{GetPrefix()} Applying patch...");
         var lines = content.Split('\n');
         for (var i = 0; i < lines.Length; i++)
         {

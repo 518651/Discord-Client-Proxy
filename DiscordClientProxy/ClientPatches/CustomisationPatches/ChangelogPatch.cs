@@ -7,7 +7,7 @@ public class ChangelogPatch : ClientPatch
     public override async Task<string> ApplyPatch(string content)
     {
         if (!content.Contains("exports='---changelog---")) return content;
-        Console.WriteLine($"[ClientPatch:{GetType().Name}] Applying patch...");
+        Console.WriteLine($"{GetPrefix()} Applying patch...");
         var changelog = content.Split("\n").First(x => x.Contains("exports='---changelog---"));
         changelog = changelog[(changelog.IndexOf("'") + 1)..^1];
         await DumpChangelog(changelog);

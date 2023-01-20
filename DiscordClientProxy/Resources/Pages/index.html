@@ -8,6 +8,13 @@
     <!--    <link id="logincss" rel="stylesheet" href="/assets/fosscord-login.css"/>-->
     <!--    <link id="customcss" rel="stylesheet" href="/assets/user.css"/>-->
     <!-- preload plugin marker -->
+    <script>
+        const oldFreeze = Object.freeze;
+        Object.freeze = function(obj) {
+            console.log('Object frozen: ', obj);
+            return oldFreeze(obj);
+        };
+    </script>
 </head>
 
 <body>

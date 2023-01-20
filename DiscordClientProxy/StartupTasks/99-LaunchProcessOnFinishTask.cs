@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using DiscordClientProxy.Interfaces;
 
 namespace DiscordClientProxy.StartupTasks;
@@ -10,7 +11,11 @@ public class LaunchProcessOnFinishTask : IStartupTask
     {
         if(Configuration.Instance.Debug.SpawnProcessOnReady is not null)
         {
-            var cmd = ParseArguments(Configuration.Instance.Debug.SpawnProcessOnReady.Replace("$DIR", "\""+Configuration.Instance.AssetCacheLocationResolved+"\""));
+            Directory.CreateDirectory(Configuration.Instance.AssetCacheLocationResolved+"/.vscode");
+            File.WriteAllText(Configuration.Instance.AssetCacheLocationResolved+"/.vscode/settings.json", "{\"editor.codeLens\":false}");
+            
+            var cmd = ParseArguments(Configuration.Instance.Debug.SpawnProcessOnReady.Replace("$DIR", Configuration.Instance.AssetCacheLocationResolved));
+            Console.WriteLine($"Launching process: {JsonSerializer.Serialize(cmd)}");
             Process.Start(cmd[0], cmd[1..]);
         }
         

@@ -18,7 +18,7 @@ public class EmotesFromGhCdnPatch : ClientPatch
         } else if (_emotes.Count == 0) {
             _emotes = JsonSerializer.Deserialize<Dictionary<string, string>>(await File.ReadAllTextAsync("emotes.json"));
         }
-        Console.WriteLine($"[ClientPatch:{GetType().Name}] Applying patch...");
+        Console.WriteLine($"{GetPrefix()} Applying patch...");
         
         foreach (var (key, value) in _emotes)
         {
